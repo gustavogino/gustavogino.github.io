@@ -16,14 +16,64 @@ $(document).ready(function () {
     }
     return age;
   }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   // END UTILITY
 
   // COMMANDS
+
+function help() {
+    terminal.append("\n");
+    terminal.append("Consulte as funções disponíveis\n");
+    terminal.append("\n");
+    terminal.append("help          - Mostra os comandos disponíveis e suas funções\n")
+    terminal.append("clear         - Limpa mensagens anteriores do console\n")
+    terminal.append("dev           - Exibe as informações do desenvolvedor\n")    
+    terminal.append("fortune       - Exibe uma mensagem aleatória\n")
+    terminal.append("echo          - Permite que você escreva no console como sistema\n")
+    terminal.append("browserinfo   - Exibe informações sobre seu navegador\n")
+    terminal.append("youtube       - Abre uma nova guia com o youtube\n")
+    terminal.append("update        - Atualiza a esta página web\n")
+    terminal.append("datatime      - Exibe informações sobre o dia e hora\n")
+    terminal.append("\n");
+  }
+
   function clear() {
     terminal.text("");
   }
 
-  function browser() {
+  function dev() {
+    terminal.append("\n");
+    terminal.append("Nome:    Gustavo Gino Scotton" + "\n");
+    terminal.append("Email:   gustavo.gino@outlook.com" + "\n");
+    terminal.append("Idade:   " + getAge("1997-03-29") + " anos\n");
+    terminal.append("\n");
+  }
+
+  function fortune() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://cdn.rawgit.com/bmc/fortunes/master/fortunes', false);
+    xhr.send(null);
+
+    if (xhr.status === 200) {
+      var fortunes = xhr.responseText.split("%");
+      var fortune = fortunes[getRandomInt(0, fortunes.length)].trim();
+      terminal.append("\n");
+      terminal.append(fortune + "\n");
+      terminal.append("\n");
+    }
+  }
+
+  function echo(args) {
+    var str = args.join(" ");
+    terminal.append("\n");
+    terminal.append(str + "\n");
+    terminal.append("\n");
+  }
+
+  function browserinfo() {
     terminal.append("\n");
     terminal.append("Código: " + navigator.appCodeName + "\n");
     terminal.append("Navegador: " + navigator.appName + "\n");
@@ -38,36 +88,36 @@ $(document).ready(function () {
     terminal.append("\n");
   }
 
-  function contact() {
-    terminal.append("\n");
-    terminal.append("Nome:    Gustavo Gino Scotton" + "\n");
-    terminal.append("Email:   gustavo.gino@outlook.com" + "\n");
-    terminal.append("Idade:   " + getAge("1997-03-29") + " anos\n");
-    terminal.append("\n");
+  function youtube() {
+    var win = window.open("https://www.youtube.com/", '_blank');
+    win.focus();
   }
 
-  function help() {
+  function update(){
+    location.reload();
     terminal.append("\n");
-    terminal.append("Ainda estou desenvolvendo isso, tenha calma xD\n");
+    terminal.append("Atualizando página...\n");
     terminal.append("\n");
   }
 
-  function echo(args) {
-    var str = args.join(" ");
-    terminal.append(str + "\n");
+  function datatime(){
+    var data = new Date();
+    var dias = new Array('Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado');
+    var meses = new Array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');   
+    var dia     = data.getDate();           // 1-31
+    var dia_sem = data.getDay();            // 0-6 (zero=domingo)
+    var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+    var ano4    = data.getFullYear();       // 4 dígitos
+    var hora    = data.getHours();          // 0-23
+    var min     = data.getMinutes();        // 0-59
+    var seg     = data.getSeconds();        // 0-59
+    var tz      = data.getTimezoneOffset(); // em minutos
+
+    terminal.append("\n");
+    terminal.append("Hoje é " + dias[dia_sem] + ", Dia " + dia + " de " + meses[mes] + " de " + ano4 + " às " + hora + ':' + min + "\n");
+    terminal.append("\n");
   }
 
-  function fortune() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://cdn.rawgit.com/bmc/fortunes/master/fortunes', false);
-    xhr.send(null);
-
-    if (xhr.status === 200) {
-      var fortunes = xhr.responseText.split("%");
-      var fortune = fortunes[getRandomInt(0, fortunes.length)].trim();
-      terminal.append(fortune + "\n");
-    }
-  }
   // END COMMANDS
 
   var title = $(".title");
@@ -84,8 +134,8 @@ $(document).ready(function () {
       "function": clear
     },
     {
-      "name": "contact",
-      "function": contact
+      "name": "dev",
+      "function": dev
     },
     {
       "name": "help",
@@ -96,12 +146,24 @@ $(document).ready(function () {
       "function": fortune
     },
     {
-      "name": "browser",
-      "function": browser
+      "name": "browserinfo",
+      "function": browserinfo
     },
     {
       "name": "echo",
       "function": echo
+    },
+    {
+      "name": "youtube",
+      "function": youtube
+    },
+    {
+      "name": "update",
+      "function": update
+    },
+    {
+      "name": "datatime",
+      "function": datatime
     }
   ];
 
