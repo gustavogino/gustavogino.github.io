@@ -3,9 +3,10 @@ body {
    height: 100%;
    overflow: hidden;
 }
+
 body {
-   background: rgb(0,188,203);
-   background-image: -webkit-radial-gradient(top, circle cover, rgba(0,188,203,1) 0%, rgba(0,170,182,1) 11%, rgba(1,126,135,1) 26%, rgba(4,71,77,1) 49%, rgba(0,7,11,1) 95%, rgba(4,4,4,1) 100%);
+   background: rgb(0, 188, 203);
+   background-image: -webkit-radial-gradient(top, circle cover, rgba(0, 188, 203, 1) 0%, rgba(0, 170, 182, 1) 11%, rgba(1, 126, 135, 1) 26%, rgba(4, 71, 77, 1) 49%, rgba(0, 7, 11, 1) 95%, rgba(4, 4, 4, 1) 100%);
    display: flex;
    justify-content: center;
    align-items: center;
@@ -121,4 +122,46 @@ button {
    100% {
       transform: translateY(0px);
    }
+}
+
+::-webkit-scrollbar {
+   width: 6px;
+   height: 6px;
+}
+
+ ::-webkit-scrollbar-button {
+   width: 0px;
+   height: 0px;
+}
+
+ ::-webkit-scrollbar-thumb {
+   background: #e1e1e1;
+   border: 0px none #ffffff;
+   border-radius: 77px;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+   background: #ffffff;
+}
+
+ ::-webkit-scrollbar-thumb:active {
+   background: #000000;
+}
+
+ ::-webkit-scrollbar-track {
+   background: #000000;
+   border: 0px none #ffffff;
+   border-radius: 100px;
+}
+
+ ::-webkit-scrollbar-track:hover {
+   background: #666666;
+}
+
+ ::-webkit-scrollbar-track:active {
+   background: #333333;
+}
+
+ ::-webkit-scrollbar-corner {
+   background: transparent;
 }

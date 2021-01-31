@@ -17,9 +17,11 @@ $(document).ready(function () {
     return age;
   }
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+	function ScrollDown() {
+	  var element = document.getElementById("terminal");
+   	  element.scrollTop = element.scrollHeight - element.clientHeight;
+	  console.log("teste")
+	}
   // END UTILITY
 
   // COMMANDS
@@ -38,10 +40,12 @@ function help() {
     terminal.append("update        - Atualiza a esta página web\n")
     terminal.append("datatime      - Exibe informações sobre o dia e hora\n")
     terminal.append("\n");
+    ScrollDown();
   }
 
   function clear() {
     terminal.text("");
+    ScrollDown();
   }
 
   function dev() {
@@ -50,6 +54,7 @@ function help() {
     terminal.append("Email:   gustavo.gino@outlook.com" + "\n");
     terminal.append("Idade:   " + getAge("1997-03-29") + " anos\n");
     terminal.append("\n");
+    ScrollDown();
   }
 
   function fortune() {
@@ -64,6 +69,7 @@ function help() {
       terminal.append(fortune + "\n");
       terminal.append("\n");
     }
+    ScrollDown();
   }
 
   function echo(args) {
@@ -71,6 +77,7 @@ function help() {
     terminal.append("\n");
     terminal.append(str + "\n");
     terminal.append("\n");
+    ScrollDown();
   }
 
   function browserinfo() {
@@ -86,11 +93,13 @@ function help() {
     terminal.append("Produto: " + navigator.product + "\n");
     terminal.append("UserAgent: " + navigator.userAgent + "\n");
     terminal.append("\n");
+    ScrollDown();
   }
 
   function youtube() {
     var win = window.open("https://www.youtube.com/", '_blank');
     win.focus();
+    ScrollDown();
   }
 
   function update(){
@@ -98,6 +107,7 @@ function help() {
     terminal.append("\n");
     terminal.append("Atualizando página...\n");
     terminal.append("\n");
+    ScrollDown();
   }
 
   function datatime(){
@@ -116,6 +126,7 @@ function help() {
     terminal.append("\n");
     terminal.append("Hoje é " + dias[dia_sem] + ", Dia " + dia + " de " + meses[mes] + " de " + ano4 + " às " + hora + ':' + min + "\n");
     terminal.append("\n");
+    ScrollDown();
   }
 
   // END COMMANDS
